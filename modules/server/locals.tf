@@ -1,27 +1,28 @@
 locals {
-  basename  = lower("${var.name}-server")
+  # Essential values that if changes would require a reconstruction
+  workspace = lower(terraform.workspace)
+  basename  = lower("${var.name}-${local.workspace}-server")
   namespace = "ns-${local.basename}"
   app       = "app-${local.basename}"
   scname    = "longhorn"
+  cloudflare_zone = "boop.ninja"
+  volume_name     = "${local.basename}-persistent-volume"
+
+  # Easy peasy to change  
   common_env = {
     WEB_HOSTNAME         = var.config.hostname
     KUBERNETES_NAMESPACE = local.namespace
-  }
-  cloudflare_zone = "boop.ninja"
-  volume_name     = "${local.basename}-persistent-volume"
-  images          = var.config.images
-
-  named_ports = {
-    http  = 80
-    https = 443
+    KUBERNETES_WORKSPACE = local.workspace
   }
 
-
-  ports = flatten(var.config.images.*.ports)
+  # Shortcut variables
+  images  = var.config.images
+  ports   = flatten(var.config.images.*.ports)
 
 }
 
 
+# Random pet generator for port name
 resource "random_pet" "port" {
   count = length(local.ports)
   keepers = {

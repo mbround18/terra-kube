@@ -1,5 +1,6 @@
 {
-  "terminal.integrated.env.windows": {
-    "TF_LOG": "DEBUG"
-  }
+  "files.autoSave": "afterDelay",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true
 }
