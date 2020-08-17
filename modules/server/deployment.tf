@@ -37,7 +37,7 @@ resource "kubernetes_deployment" "d" {
               for_each = lookup(container.value, "ports", [80])
               content {
                 # Check for a named port and if a string is provided it will fail. 
-                container_port = lookup(local.named_ports, port.value, port.value)
+                container_port = port.value
               }
             }
 
