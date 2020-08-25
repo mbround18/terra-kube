@@ -1,3 +1,8 @@
+variable "zone" {
+  type        = string
+  description = "DNS Zone"
+}
+
 variable "servers" {
   type        = list(any)
   description = "List of servers"

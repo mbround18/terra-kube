@@ -5,7 +5,6 @@ locals {
   namespace = "ns-${local.basename}"
   app       = "app-${local.basename}"
   scname    = "longhorn"
-  cloudflare_zone = "boop.ninja"
   volume_name     = "${local.basename}-persistent-volume"
 
   # Easy peasy to change  

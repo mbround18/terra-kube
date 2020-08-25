@@ -1,9 +1,9 @@
-variable "name" {
+variable name {
   type        = string
   description = "Required to auto-generate naming conventions"
 }
 
-variable "config" {
+variable config {
   type = any
   # object({
   #   hostname = any
@@ -18,7 +18,7 @@ variable "config" {
   description = "Configuration for a server"
 }
 
-variable "sanitize_regex" {
+variable sanitize_regex {
   default = "/[^a-zA-Z]/"
 }
 
